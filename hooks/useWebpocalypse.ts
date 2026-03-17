@@ -27,6 +27,7 @@ interface UseWebpocalypseResult {
   handleFilesChange: (newFiles: FileWithPath[]) => void;
   handleQualityChange: (value: number) => void;
   handleFormatChange: (format: ConversionSettings["outputFormat"]) => void;
+  handleLosslessChange: (value: boolean) => void;
   handleConvert: () => Promise<void>;
   handleDownload: () => void;
   handleAgain: () => void;
@@ -46,6 +47,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     quality: 80,
     keepOriginals: false,
     outputFormat: "webp",
+    lossless: false,
   });
   const [progress, setProgress] = useState<ConversionProgress>({
     total: 0,
@@ -122,6 +124,13 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     [],
   );
 
+  const handleLosslessChange = useCallback((value: boolean) => {
+    setSettings((prev) => ({
+      ...prev,
+      lossless: value,
+    }));
+  }, []);
+
   const handleConvert = useCallback(async () => {
     if (files.length === 0) return;
 
@@ -148,6 +157,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
       const formData = new FormData();
       formData.append("quality", settings.quality.toString());
       formData.append("outputFormat", settings.outputFormat);
+      formData.append("lossless", settings.lossless.toString());
 
       files.forEach((fileWithPath, index) => {
         formData.append(`file_${index}`, fileWithPath.file);
@@ -204,7 +214,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
             : "An unexpected error occurred",
       }));
     }
-  }, [files, settings.quality, settings.outputFormat, isOverLimit]);
+  }, [files, settings.quality, settings.outputFormat, settings.lossless, isOverLimit]);
 
   const handleDownload = useCallback(() => {
     if (!downloadUrl) return;
@@ -244,6 +254,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     handleFilesChange,
     handleQualityChange,
     handleFormatChange,
+    handleLosslessChange,
     handleConvert,
     handleDownload,
     handleAgain,

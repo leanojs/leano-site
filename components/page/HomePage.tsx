@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { FolderDropzone } from "@/components/FolderDropzone";
@@ -37,6 +38,7 @@ export function HomePage() {
     handleFilesChange,
     handleQualityChange,
     handleFormatChange,
+    handleLosslessChange,
     handleConvert,
     handleDownload,
     handleAgain,
@@ -116,10 +118,15 @@ export function HomePage() {
                         </CardHeader>
                         <CardContent className="space-y-2 px-4 pt-0">
                           <div className="flex justify-between items-center">
-                            <Label htmlFor="quality" className="text-xs">
+                            <Label
+                              htmlFor="quality"
+                              className={`text-xs transition-opacity ${settings.lossless ? "opacity-40" : ""}`}
+                            >
                               Quality
                             </Label>
-                            <span className="font-medium tabular-nums text-xs">
+                            <span
+                              className={`font-medium tabular-nums text-xs transition-opacity ${settings.lossless ? "opacity-40" : ""}`}
+                            >
                               {settings.quality}%
                             </span>
                           </div>
@@ -132,12 +139,32 @@ export function HomePage() {
                             onValueChange={([value]) =>
                               handleQualityChange(value)
                             }
-                            disabled={isProcessing}
-                            className="w-full"
+                            disabled={isProcessing || settings.lossless}
+                            className={`w-full transition-opacity ${settings.lossless ? "opacity-40 pointer-events-none" : ""}`}
                           />
-                          <p className="text-[11px] text-muted-foreground">
-                            Higher = larger files. 80% recommended.
-                          </p>
+                          {settings.lossless ? (
+                            <p className="text-[11px] text-amber-500/80">
+                              Lossless mode ignores quality settings.
+                            </p>
+                          ) : (
+                            <p className="text-[11px] text-muted-foreground">
+                              Higher = larger files. 80% recommended.
+                            </p>
+                          )}
+                          <div className="flex justify-between items-center pt-1">
+                            <Label
+                              htmlFor="lossless"
+                              className="text-xs cursor-pointer"
+                            >
+                              Lossless Mode
+                            </Label>
+                            <Switch
+                              id="lossless"
+                              checked={settings.lossless}
+                              onCheckedChange={handleLosslessChange}
+                              disabled={isProcessing}
+                            />
+                          </div>
                           <div className="space-y-1 mt-3">
                             <p className="font-medium text-[11px] text-muted-foreground">
                               Output format

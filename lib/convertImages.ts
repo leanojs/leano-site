@@ -12,7 +12,8 @@ interface ConvertedFile {
 async function convertToFormat(
   file: UploadedFile,
   quality: number,
-  format: Exclude<OutputFormat, 'both'>
+  format: Exclude<OutputFormat, 'both'>,
+  lossless = false
 ): Promise<ConvertedFile> {
   const image = sharp(file.buffer);
 
@@ -20,8 +21,8 @@ async function convertToFormat(
     format === 'avif'
       // effort 2 (scale 0–9): ~10× faster than the default of 4 with
       // negligible quality loss for web use. The default locks the CPU.
-      ? await image.avif({ quality, effort: 2 }).toBuffer()
-      : await image.webp({ quality }).toBuffer();
+      ? await image.avif({ quality: lossless ? 100 : quality, effort: 2, lossless }).toBuffer()
+      : await image.webp(lossless ? { lossless: true } : { quality }).toBuffer();
 
   const relativePath =
     format === 'avif'
@@ -43,7 +44,8 @@ async function convertToFormat(
 export async function convertImages(
   files: UploadedFile[],
   quality: number = 80,
-  outputFormat: OutputFormat = 'webp'
+  outputFormat: OutputFormat = 'webp',
+  lossless = false
 ): Promise<{ convertedFiles: ConvertedFile[]; results: ConversionResult[] }> {
   // Filter only supported images
   const supportedFiles = files.filter(f => isSupportedImage(f.originalName));
@@ -67,11 +69,11 @@ export async function convertImages(
           const conversions: ConvertedFile[] = [];
 
           if (outputFormat === 'webp' || outputFormat === 'both') {
-            conversions.push(await convertToFormat(file, quality, 'webp'));
+            conversions.push(await convertToFormat(file, quality, 'webp', lossless));
           }
 
           if (outputFormat === 'avif' || outputFormat === 'both') {
-            conversions.push(await convertToFormat(file, quality, 'avif'));
+            conversions.push(await convertToFormat(file, quality, 'avif', lossless));
           }
 
           return { success: true, file, converted: conversions };

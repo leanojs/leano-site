@@ -28,6 +28,7 @@ export interface ConversionSettings {
   quality: number;
   keepOriginals: boolean;
   outputFormat: OutputFormat;
+  lossless: boolean;
 }
 
 export interface UploadedFile {

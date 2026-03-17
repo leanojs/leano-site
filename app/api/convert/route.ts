@@ -22,7 +22,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const outputFormat: OutputFormat = allowedFormats.includes(outputFormatRaw as OutputFormat)
       ? (outputFormatRaw as OutputFormat)
       : 'webp';
-    
+
+    // Get lossless flag (default to false)
+    const lossless = formData.get('lossless') === 'true';
+
     // Validate quality range
     if (quality < 50 || quality > 100) {
       return NextResponse.json(
@@ -73,7 +76,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Convert images
-    const { convertedFiles, results } = await convertImages(supportedFiles, quality, outputFormat);
+    const { convertedFiles, results } = await convertImages(supportedFiles, quality, outputFormat, lossless);
 
     // Check for conversion failures
     const failedConversions = results.filter(r => !r.success);
