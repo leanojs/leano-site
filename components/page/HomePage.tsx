@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -81,9 +82,16 @@ export function HomePage() {
 
   return (
     <main className="relative bg-background min-h-screen overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: `url(/images/background.webp)` }}
+      {/* Real <img> element — required for Lighthouse to detect an LCP candidate.
+          CSS background-image is excluded from LCP by spec. priority adds
+          <link rel="preload"> + fetchpriority="high" automatically. */}
+      <Image
+        src="/images/background.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center pointer-events-none"
         aria-hidden="true"
       />
 
