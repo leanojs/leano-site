@@ -18,7 +18,7 @@ const resourceLinks = [
     external: true,
   },
   {
-    href: "https://github.com/meowbeen/webpocalypse",
+    href: "https://github.com/meowbeen/webpocalypse-cli",
     label: "GitHub",
     external: true,
   },
@@ -98,7 +98,8 @@ export default function Footer() {
           <FadeUp delay={0.2}>
             <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-2 pt-4">
               <p className="text-muted-foreground text-xs">
-                &copy; {new Date().getFullYear()} Webpocalypse. All rights reserved.
+                &copy; {new Date().getFullYear()} Webpocalypse. All rights
+                reserved.
               </p>
               <div className="flex items-center gap-4">
                 {legalLinks.map((l) => (
