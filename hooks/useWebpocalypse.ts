@@ -28,6 +28,9 @@ interface UseWebpocalypseResult {
   handleQualityChange: (value: number) => void;
   handleFormatChange: (format: ConversionSettings["outputFormat"]) => void;
   handleLosslessChange: (value: boolean) => void;
+  handleResizeChange: (value: boolean) => void;
+  handleMaxWidthChange: (value: number | undefined) => void;
+  handleMaxHeightChange: (value: number | undefined) => void;
   handleConvert: () => Promise<void>;
   handleDownload: () => void;
   handleAgain: () => void;
@@ -48,6 +51,9 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     keepOriginals: false,
     outputFormat: "webp",
     lossless: false,
+    resize: false,
+    maxWidth: undefined,
+    maxHeight: undefined,
   });
   const [progress, setProgress] = useState<ConversionProgress>({
     total: 0,
@@ -131,6 +137,27 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     }));
   }, []);
 
+  const handleResizeChange = useCallback((value: boolean) => {
+    setSettings((prev) => ({
+      ...prev,
+      resize: value,
+    }));
+  }, []);
+
+  const handleMaxWidthChange = useCallback((value: number | undefined) => {
+    setSettings((prev) => ({
+      ...prev,
+      maxWidth: value,
+    }));
+  }, []);
+
+  const handleMaxHeightChange = useCallback((value: number | undefined) => {
+    setSettings((prev) => ({
+      ...prev,
+      maxHeight: value,
+    }));
+  }, []);
+
   const handleConvert = useCallback(async () => {
     if (files.length === 0) return;
 
@@ -158,6 +185,13 @@ export function useWebpocalypse(): UseWebpocalypseResult {
       formData.append("quality", settings.quality.toString());
       formData.append("outputFormat", settings.outputFormat);
       formData.append("lossless", settings.lossless.toString());
+      formData.append("resize", settings.resize.toString());
+      if (settings.resize && settings.maxWidth) {
+        formData.append("maxWidth", settings.maxWidth.toString());
+      }
+      if (settings.resize && settings.maxHeight) {
+        formData.append("maxHeight", settings.maxHeight.toString());
+      }
 
       files.forEach((fileWithPath, index) => {
         formData.append(`file_${index}`, fileWithPath.file);
@@ -214,7 +248,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
             : "An unexpected error occurred",
       }));
     }
-  }, [files, settings.quality, settings.outputFormat, settings.lossless, isOverLimit]);
+  }, [files, settings.quality, settings.outputFormat, settings.lossless, settings.resize, settings.maxWidth, settings.maxHeight, isOverLimit]);
 
   const handleDownload = useCallback(() => {
     if (!downloadUrl) return;
@@ -255,6 +289,9 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     handleQualityChange,
     handleFormatChange,
     handleLosslessChange,
+    handleResizeChange,
+    handleMaxWidthChange,
+    handleMaxHeightChange,
     handleConvert,
     handleDownload,
     handleAgain,

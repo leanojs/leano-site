@@ -26,6 +26,28 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Get lossless flag (default to false)
     const lossless = formData.get('lossless') === 'true';
 
+    // Get resize options
+    const resize = formData.get('resize') === 'true';
+    const maxWidthStr = formData.get('maxWidth')?.toString();
+    const maxHeightStr = formData.get('maxHeight')?.toString();
+    const maxWidth = maxWidthStr ? parseInt(maxWidthStr, 10) : undefined;
+    const maxHeight = maxHeightStr ? parseInt(maxHeightStr, 10) : undefined;
+
+    if (resize) {
+      if (maxWidth !== undefined && (isNaN(maxWidth) || maxWidth <= 0)) {
+        return NextResponse.json(
+          { success: false, message: 'maxWidth must be a positive integer.' },
+          { status: 400 }
+        );
+      }
+      if (maxHeight !== undefined && (isNaN(maxHeight) || maxHeight <= 0)) {
+        return NextResponse.json(
+          { success: false, message: 'maxHeight must be a positive integer.' },
+          { status: 400 }
+        );
+      }
+    }
+
     // Validate quality range
     if (quality < 50 || quality > 100) {
       return NextResponse.json(
@@ -76,7 +98,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Convert images
-    const { convertedFiles, results } = await convertImages(supportedFiles, quality, outputFormat, lossless);
+    const { convertedFiles, results } = await convertImages(
+      supportedFiles,
+      quality,
+      outputFormat,
+      lossless,
+      { enabled: resize, width: maxWidth, height: maxHeight }
+    );
 
     // Check for conversion failures
     const failedConversions = results.filter(r => !r.success);

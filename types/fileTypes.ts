@@ -29,6 +29,9 @@ export interface ConversionSettings {
   keepOriginals: boolean;
   outputFormat: OutputFormat;
   lossless: boolean;
+  resize: boolean;
+  maxWidth?: number;
+  maxHeight?: number;
 }
 
 export interface UploadedFile {

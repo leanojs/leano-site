@@ -9,13 +9,29 @@ interface ConvertedFile {
   convertedSize: number;
 }
 
+interface ResizeOptions {
+  enabled: boolean;
+  width?: number;
+  height?: number;
+}
+
 async function convertToFormat(
   file: UploadedFile,
   quality: number,
   format: Exclude<OutputFormat, 'both'>,
-  lossless = false
+  lossless = false,
+  resizeOpts: ResizeOptions = { enabled: false }
 ): Promise<ConvertedFile> {
   const image = sharp(file.buffer);
+
+  if (resizeOpts.enabled && (resizeOpts.width || resizeOpts.height)) {
+    image.resize({
+      width: resizeOpts.width,
+      height: resizeOpts.height,
+      fit: 'inside',
+      withoutEnlargement: true,
+    });
+  }
 
   const buffer =
     format === 'avif'
@@ -45,7 +61,8 @@ export async function convertImages(
   files: UploadedFile[],
   quality: number = 80,
   outputFormat: OutputFormat = 'webp',
-  lossless = false
+  lossless = false,
+  resizeOpts: ResizeOptions = { enabled: false }
 ): Promise<{ convertedFiles: ConvertedFile[]; results: ConversionResult[] }> {
   // Filter only supported images
   const supportedFiles = files.filter(f => isSupportedImage(f.originalName));
@@ -69,11 +86,11 @@ export async function convertImages(
           const conversions: ConvertedFile[] = [];
 
           if (outputFormat === 'webp' || outputFormat === 'both') {
-            conversions.push(await convertToFormat(file, quality, 'webp', lossless));
+            conversions.push(await convertToFormat(file, quality, 'webp', lossless, resizeOpts));
           }
 
           if (outputFormat === 'avif' || outputFormat === 'both') {
-            conversions.push(await convertToFormat(file, quality, 'avif', lossless));
+            conversions.push(await convertToFormat(file, quality, 'avif', lossless, resizeOpts));
           }
 
           return { success: true, file, converted: conversions };
