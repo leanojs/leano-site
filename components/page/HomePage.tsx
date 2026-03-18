@@ -83,7 +83,7 @@ export function HomePage() {
     <main className="relative bg-background min-h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: `url(/images/background.jpg)` }}
+        style={{ backgroundImage: `url(/images/background.webp)` }}
         aria-hidden="true"
       />
 
@@ -98,7 +98,11 @@ export function HomePage() {
               className="relative flex flex-col items-center w-full max-w-sm shrink-0"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+              transition={{
+                duration: 0.5,
+                ease: [0.25, 0.1, 0.25, 1],
+                delay: 0.1,
+              }}
             >
               {downloadUrl && showCompletedState && (
                 <button

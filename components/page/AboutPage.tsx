@@ -46,12 +46,12 @@ export function AboutPage() {
   return (
     <main className="relative bg-background min-h-screen overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-60"
-        style={{ backgroundImage: `url(/images/background.jpg)` }}
+        className="absolute inset-0 bg-cover bg-center opacity-60 pointer-events-none"
+        style={{ backgroundImage: `url(/images/background.webp)` }}
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="z-10 relative flex flex-col min-h-screen">
         <Header />
 
         <div className="flex-1 px-4 sm:px-6 py-16 md:py-24">
@@ -59,13 +59,13 @@ export function AboutPage() {
             {/* Hero */}
             <div className="mb-16 text-center">
               <HeroReveal delay={0.05}>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <p className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
                   the origin story
                 </p>
               </HeroReveal>
 
               <HeroReveal delay={0.15}>
-                <h1 className="mb-5 text-4xl font-bold tracking-tight sm:text-5xl">
+                <h1 className="mb-5 font-bold text-4xl sm:text-5xl tracking-tight">
                   I got tired of
                   <br />
                   doing it manually.
@@ -73,7 +73,7 @@ export function AboutPage() {
               </HeroReveal>
 
               <HeroReveal delay={0.25}>
-                <p className="mx-auto max-w-xl text-base text-muted-foreground sm:text-lg">
+                <p className="mx-auto max-w-xl text-muted-foreground text-base sm:text-lg">
                   Converting images one by one is genuinely one of the worst
                   tasks in web dev. So I built Webpocalypse — a tool (actually
                   three tools) that batch converts your entire folder of JPGs
@@ -84,11 +84,13 @@ export function AboutPage() {
 
             {/* Stats */}
             <FadeUp className="mb-16">
-              <Stagger className="grid grid-cols-3 gap-4 rounded-3xl border border-border/50 bg-card/70 p-6 backdrop-blur-sm">
+              <Stagger className="gap-4 grid grid-cols-3 bg-card/70 backdrop-blur-sm p-6 border border-border/50 rounded-3xl">
                 {stats.map((stat) => (
                   <StaggerItem key={stat.label} className="text-center">
-                    <p className="text-xl font-bold sm:text-2xl">{stat.value}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className="font-bold text-xl sm:text-2xl">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-muted-foreground text-xs">
                       {stat.label}
                     </p>
                   </StaggerItem>
@@ -98,16 +100,16 @@ export function AboutPage() {
 
             {/* Why section */}
             <FadeUp className="mb-16">
-              <div className="space-y-4 rounded-3xl border border-border/50 bg-card/70 p-6 backdrop-blur-sm sm:p-8">
-                <h2 className="text-lg font-semibold">okay but why though</h2>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+              <div className="space-y-4 bg-card/70 backdrop-blur-sm p-6 sm:p-8 border border-border/50 rounded-3xl">
+                <h2 className="font-semibold text-lg">okay but why though</h2>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   Images are almost always the heaviest thing on a webpage.
                   We&apos;re talking JPEGs and PNGs that are 10x larger than
                   they need to be. WebP and AVIF cut that by 70–90% — same
                   quality, fraction of the size. Your site loads faster, your
                   Lighthouse score goes up, users don&apos;t bounce.
                 </p>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   The problem is converting them is annoying. Every tool either
                   makes you upload to some random server (weird), handles one
                   file at a time (unacceptable), or completely destroys your
@@ -120,31 +122,33 @@ export function AboutPage() {
 
             {/* Products */}
             <FadeUp className="mb-16">
-              <h2 className="mb-6 text-lg font-semibold">three ways to use it</h2>
+              <h2 className="mb-6 font-semibold text-lg">
+                three ways to use it
+              </h2>
               <Stagger className="space-y-3">
                 {products.map((product) => {
                   const Icon = product.icon;
                   return (
                     <StaggerItem key={product.title}>
-                      <div className="flex items-start gap-4 rounded-2xl border border-border/50 bg-card/70 p-5 backdrop-blur-sm transition-colors hover:bg-card/90">
-                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                          <Icon className="h-4 w-4 text-primary" />
+                      <div className="flex items-start gap-4 bg-card/70 hover:bg-card/90 backdrop-blur-sm p-5 border border-border/50 rounded-2xl transition-colors">
+                        <span className="inline-flex justify-center items-center bg-primary/10 rounded-full w-9 h-9 shrink-0">
+                          <Icon className="w-4 h-4 text-primary" />
                         </span>
-                        <div className="min-w-0 flex-1">
+                        <div className="flex-1 min-w-0">
                           <p className="mb-1 font-semibold">{product.title}</p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-muted-foreground text-sm">
                             {product.description}
                           </p>
                         </div>
                         <Button
                           size="sm"
                           variant="outline"
-                          className="shrink-0 rounded-full"
+                          className="rounded-full shrink-0"
                           asChild
                         >
                           <Link href={product.href}>
                             {product.cta}
-                            <ArrowRight className="ml-1 h-3 w-3" />
+                            <ArrowRight className="ml-1 w-3 h-3" />
                           </Link>
                         </Button>
                       </div>
@@ -156,7 +160,7 @@ export function AboutPage() {
 
             {/* CTA */}
             <FadeUp className="text-center">
-              <Button size="lg" className="rounded-full px-8" asChild>
+              <Button size="lg" className="px-8 rounded-full" asChild>
                 <Link href="/">try the web app, it&apos;s free</Link>
               </Button>
             </FadeUp>
