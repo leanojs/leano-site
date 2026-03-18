@@ -17,7 +17,7 @@ const Logo = ({
   return (
     <Link href="/" className="flex items-center gap-1">
       <div>
-        <Image src={src} alt={alt} width={width} height={height} />
+        <Image src={src} alt="" width={width} height={height} aria-hidden="true" />
       </div>
       <span className="font-semibold text-xl tracking-tight">{title}</span>
     </Link>

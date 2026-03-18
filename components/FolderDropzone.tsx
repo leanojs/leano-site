@@ -93,6 +93,7 @@ export function FolderDropzone({ files, onFilesChange, disabled, className }: Fo
     >
       <input
         {...getInputProps()}
+        aria-label="Upload images"
         /* @ts-expect-error - webkitdirectory is not in standard types */
         webkitdirectory=""
         directory=""

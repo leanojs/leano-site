@@ -233,6 +233,7 @@ export function HomePage() {
                         </div>
                         <Slider
                           id="quality"
+                          aria-label="Quality"
                           min={50}
                           max={100}
                           step={1}
