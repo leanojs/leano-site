@@ -14,18 +14,25 @@ interface FolderDropzoneProps {
   className?: string;
 }
 
-const ACCEPTED_EXTENSIONS = ['.jpg', '.jpeg', '.png'];
 const MAX_TOTAL_BYTES = 50 * 1024 * 1024; // 50 MB
 
-function isAcceptedFile(filename: string): boolean {
-  const ext = filename.toLowerCase().slice(filename.lastIndexOf('.'));
-  return ACCEPTED_EXTENSIONS.includes(ext);
+// OS/editor-generated junk that should never be uploaded
+const IGNORED_SYSTEM_FILES = new Set([
+  '.ds_store',
+  'thumbs.db',
+  'desktop.ini',
+  '.gitkeep',
+  '.gitignore',
+]);
+
+function isIgnoredSystemFile(filename: string): boolean {
+  return IGNORED_SYSTEM_FILES.has(filename.toLowerCase());
 }
 
 export function FolderDropzone({ files, onFilesChange, disabled, className }: FolderDropzoneProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const filtered: FileWithPath[] = acceptedFiles
-      .filter(file => isAcceptedFile(file.name))
+      .filter(file => !isIgnoredSystemFile(file.name))
       .map(file => ({
         file,
         relativePath: (file as File & { path?: string }).path ||
@@ -93,7 +100,7 @@ export function FolderDropzone({ files, onFilesChange, disabled, className }: Fo
     >
       <input
         {...getInputProps()}
-        aria-label="Upload images"
+        aria-label="Upload folder"
         /* @ts-expect-error - webkitdirectory is not in standard types */
         webkitdirectory=""
         directory=""
@@ -107,7 +114,7 @@ export function FolderDropzone({ files, onFilesChange, disabled, className }: Fo
             <div className="flex items-center gap-1.5 min-w-0">
               <Image className={cn("h-4 w-4 shrink-0", isTooLarge ? "text-destructive" : "text-primary")} />
               <span className="font-medium text-sm truncate">
-                {files.length} images
+                {files.length} files
               </span>
               <span className={cn("text-xs shrink-0", isTooLarge ? "text-destructive font-semibold" : "text-muted-foreground")}>
                 ({formatSize(totalSize)})
@@ -161,7 +168,7 @@ export function FolderDropzone({ files, onFilesChange, disabled, className }: Fo
                 <p className="text-lg font-medium">Drag and drop a folder here</p>
                 <p className="text-sm text-muted-foreground mt-1">or click to browse for a folder</p>
               </div>
-              <p className="text-xs text-muted-foreground">Supports JPG, JPEG, and PNG files</p>
+              <p className="text-xs text-muted-foreground">Converts JPG, JPEG &amp; PNG → WebP/AVIF · SVG, ICO, WebP &amp; other files are preserved as-is</p>
             </>
           )}
         </div>

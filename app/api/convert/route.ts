@@ -84,14 +84,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Filter to only supported images
+    // Only jpg/jpeg/png files are converted; everything else is handled client-side
     const supportedFiles = filterSupportedImages(uploadedFiles);
 
     if (supportedFiles.length === 0) {
       return NextResponse.json(
         { 
           success: false, 
-          message: 'No supported images found. Please upload JPG, JPEG, or PNG files.' 
+          message: 'No convertible images found in this batch. Please upload JPG, JPEG, or PNG files.' 
         },
         { status: 400 }
       );
@@ -118,13 +118,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Create ZIP file (include original .webp files unchanged)
-    const zipBuffer = await createZip([
-      ...convertedFiles,
-      ...uploadedFiles.filter(
-        (file) => file.originalName.toLowerCase().endsWith('.webp')
-      ),
-    ]);
+    const zipBuffer = await createZip(convertedFiles);
 
     // Calculate stats from the canonical per-file results, guarding
     // against any unexpected NaN values.

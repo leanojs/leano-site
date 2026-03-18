@@ -20,6 +20,8 @@ export interface ConversionProgress {
   currentFile: string;
   status: 'idle' | 'uploading' | 'converting' | 'zipping' | 'complete' | 'error';
   error?: string;
+  currentBatch?: number;
+  totalBatches?: number;
 }
 
 export type OutputFormat = 'webp' | 'avif' | 'both';

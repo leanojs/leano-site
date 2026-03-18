@@ -1,21 +1,49 @@
 import type { UploadedFile } from '@/types/fileTypes';
 
-// Supported image extensions for conversion
-const SUPPORTED_EXTENSIONS = ['.jpg', '.jpeg', '.png'];
+// Extensions that get converted to webp/avif
+const CONVERTIBLE_EXTENSIONS = ['.jpg', '.jpeg', '.png'];
+
+// OS/editor-generated files that should never appear in the output
+const IGNORED_SYSTEM_FILES = new Set([
+  '.ds_store',
+  'thumbs.db',
+  'desktop.ini',
+  '.gitkeep',
+  '.gitignore',
+]);
 
 /**
- * Check if a file has a supported image extension
+ * Returns true for OS/editor junk that should be silently skipped.
  */
-export function isSupportedImage(filename: string): boolean {
-  const ext = filename.toLowerCase().slice(filename.lastIndexOf('.'));
-  return SUPPORTED_EXTENSIONS.includes(ext);
+export function isIgnoredSystemFile(filename: string): boolean {
+  return IGNORED_SYSTEM_FILES.has(filename.toLowerCase());
 }
 
 /**
- * Filter uploaded files to only include supported images
+ * Check if a file has a supported image extension (will be converted)
+ */
+export function isSupportedImage(filename: string): boolean {
+  const ext = filename.toLowerCase().slice(filename.lastIndexOf('.'));
+  return CONVERTIBLE_EXTENSIONS.includes(ext);
+}
+
+/**
+ * Filter uploaded files to only include images that should be converted
  */
 export function filterSupportedImages(files: UploadedFile[]): UploadedFile[] {
   return files.filter(file => isSupportedImage(file.originalName));
+}
+
+/**
+ * Files that are not convertible and not system junk — passed through unchanged.
+ * This covers .webp, .svg, .ico, .gif, fonts, JSON, etc.
+ */
+export function filterPassthroughFiles(files: UploadedFile[]): UploadedFile[] {
+  return files.filter(
+    (file) =>
+      !isSupportedImage(file.originalName) &&
+      !isIgnoredSystemFile(file.originalName),
+  );
 }
 
 /**

@@ -7,14 +7,20 @@ interface ProgressBarProps {
   progress: ConversionProgress;
 }
 
-const statusMessages: Record<ConversionProgress["status"], string> = {
-  idle: "Ready to convert",
-  uploading: "Uploading files...",
-  converting: "Converting images...",
-  zipping: "Creating ZIP file...",
-  complete: "Ready to download!",
-  error: "An error occurred",
-};
+function statusLabel(progress: ConversionProgress): string {
+  switch (progress.status) {
+    case "idle":     return "Ready to convert";
+    case "converting": return "Converting images...";
+    case "zipping":  return "Creating ZIP file...";
+    case "complete": return "Ready to download!";
+    case "error":    return "An error occurred";
+    case "uploading":
+      if (progress.totalBatches && progress.totalBatches > 1) {
+        return `Uploading batch ${progress.currentBatch} of ${progress.totalBatches}...`;
+      }
+      return "Uploading files...";
+  }
+}
 
 export function ProgressBar({ progress }: ProgressBarProps) {
   const percentage =
@@ -26,7 +32,7 @@ export function ProgressBar({ progress }: ProgressBarProps) {
     <div className="space-y-3 w-full">
       <div className="flex justify-between items-center text-sm">
         <span className="text-muted-foreground">
-          {statusMessages[progress.status]}
+          {statusLabel(progress)}
         </span>
         {progress.status !== "idle" && progress.status !== "error" && (
           <span className="font-medium tabular-nums">
