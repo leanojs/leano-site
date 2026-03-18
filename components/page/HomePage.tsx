@@ -25,8 +25,9 @@ import { Spinner } from "@/components/ui/spinner";
 import { FolderDropzone } from "@/components/FolderDropzone";
 import { ProgressBar } from "@/components/ProgressBar";
 import { FileResultsTable } from "@/components/FileResultsTable";
-import Logo from "@/components/ui/logo";
 import { useWebpocalypse } from "@/hooks/useWebpocalypse";
+import Header from "../layout/header";
+import { motion, AnimatePresence } from "motion/react";
 
 export function HomePage() {
   const {
@@ -86,27 +87,24 @@ export function HomePage() {
         aria-hidden="true"
       />
 
-      <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/50" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/60" />
 
       <div className="z-10 relative flex flex-col min-h-screen">
-        <header className="flex justify-between items-center px-6 py-4">
-          <Logo
-            src="/images/webpocalypse-secondary.svg"
-            alt="Webpocalypse"
-            width={24}
-            height={24}
-            title="Webpocalypse"
-          />
-        </header>
+        <Header />
 
         <div className="flex flex-1 items-center px-4 sm:px-6 py-6">
           <div className="flex lg:flex-row flex-col justify-start items-center gap-4 w-full">
-            <div className="relative flex flex-col items-center w-full max-w-sm shrink-0">
+            <motion.div
+              className="relative flex flex-col items-center w-full max-w-sm shrink-0"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+            >
               {downloadUrl && showCompletedState && (
                 <button
                   type="button"
                   onClick={handleAgain}
-                  className="inline-flex -top-8 hover:-top-9 z-0 absolute justify-center items-center gap-2 bg-card/90 hover:bg-card shadow-md backdrop-blur-md mx-auto px-4 py-3 border border-border/70 rounded-2xl rounded-b-none min-w-xs font-semibold text-foreground text-xs transition transition-all duration-300 cursor-pointer"
+                  className="inline-flex -top-8 hover:-top-9 z-0 absolute justify-center items-center gap-2 bg-card/90 hover:bg-card shadow-md backdrop-blur-md mx-auto px-4 py-3 border border-border/70 rounded-2xl rounded-b-none min-w-xs font-semibold text-foreground text-xs transition duration-300 cursor-pointer"
                 >
                   <RotateCcw className="w-4 h-4" />
                   Again?
@@ -497,11 +495,20 @@ export function HomePage() {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
 
-            {fileResults && showCompletedState && (
-              <FileResultsTable results={fileResults} />
-            )}
+            <AnimatePresence>
+              {fileResults && showCompletedState && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  <FileResultsTable results={fileResults} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
