@@ -27,7 +27,7 @@ import { FolderDropzone } from "@/components/FolderDropzone";
 import { ProgressBar } from "@/components/ProgressBar";
 import { FileResultsTable } from "@/components/FileResultsTable";
 import { useWebpocalypse } from "@/hooks/useWebpocalypse";
-import Header from "../layout/header";
+import SiteLayout from "@/components/layout/SiteLayout";
 import { motion, AnimatePresence } from "motion/react";
 
 export function HomePage() {
@@ -91,15 +91,13 @@ export function HomePage() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center pointer-events-none"
+        className="object-center object-cover pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/60" />
 
-      <div className="z-10 relative flex flex-col min-h-screen">
-        <Header />
-
+      <SiteLayout>
         <div className="flex flex-1 items-center px-4 sm:px-6 py-6">
           <div className="flex lg:flex-row flex-col justify-start items-center gap-4 w-full">
             <motion.div
@@ -524,7 +522,7 @@ export function HomePage() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
+      </SiteLayout>
     </main>
   );
 }

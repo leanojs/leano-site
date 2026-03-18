@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Zap, Terminal, GitBranch, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/layout/header";
+import SiteLayout from "@/components/layout/SiteLayout";
 import {
   FadeUp,
   HeroReveal,
@@ -55,9 +55,7 @@ export function AboutPage() {
         aria-hidden="true"
       />
 
-      <div className="z-10 relative flex flex-col min-h-screen">
-        <Header />
-
+      <SiteLayout>
         <div className="flex-1 px-4 sm:px-6 py-16 md:py-24">
           <div className="mx-auto max-w-3xl">
             {/* Hero */}
@@ -170,7 +168,7 @@ export function AboutPage() {
             </FadeUp>
           </div>
         </div>
-      </div>
+      </SiteLayout>
     </main>
   );
 }
