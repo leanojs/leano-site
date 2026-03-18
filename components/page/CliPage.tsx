@@ -138,7 +138,11 @@ export function CliPage() {
     <main className="relative bg-background min-h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-60 pointer-events-none"
-        style={{ backgroundImage: `url(/images/background.webp)` }}
+        style={{
+          backgroundImage: `url(/images/background.webp)`,
+          transform: "scale(1.4)",
+          transformOrigin: "top center",
+        }}
         aria-hidden="true"
       />
 
