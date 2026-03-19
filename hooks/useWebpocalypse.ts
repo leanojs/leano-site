@@ -347,7 +347,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "converted-images.zip";
+    link.download = `webpocalypse-${new Date().toISOString().slice(0, 10)}.zip`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
