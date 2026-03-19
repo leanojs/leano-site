@@ -144,18 +144,21 @@ on:
       - '**.jpg'
       - '**.jpeg'
       - '**.png'
+      - '**.webp'
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - '**.jpg'
       - '**.jpeg'
       - '**.png'
+      - '**.webp'
 
 jobs:
   optimize:
     runs-on: ubuntu-latest
+    # contents: write is only needed when commit-back: true
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -166,7 +169,9 @@ jobs:
         uses: meowbeen/webpocalypse-action@v1
         with:
           format: webp
-          quality: 82`;
+          quality: 82
+          commit-back: true
+          token: \${{ secrets.GITHUB_TOKEN }}`;
 
 const commitBackYaml = `jobs:
   optimize:
@@ -211,7 +216,7 @@ const fullScanYaml = `- uses: meowbeen/webpocalypse-action@v1
     token: \${{ secrets.GITHUB_TOKEN }}`;
 
 const whatItDoes = [
-  "detects which image files (.jpg, .jpeg, .png, .webp) were added or changed in the PR.",
+  "detects which image files (.jpg, .jpeg, .png, .webp, .avif) were added or changed in the PR.",
   "converts them in-place using npx webpocalypse — no Docker, no pre-installed tools.",
   "reports savings via action outputs and summary logs.",
   "optionally commits the optimized images back to your branch. you can just merge.",
