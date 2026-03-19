@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   GitBranch,
@@ -6,6 +9,8 @@ import {
   FileCode2,
   ArrowRight,
   Info,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SiteLayout from "@/components/layout/SiteLayout";
@@ -18,9 +23,28 @@ import {
 
 function CodeBlock({ code, lang = "yaml" }: { code: string; lang?: string }) {
   void lang;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div className="bg-foreground/5 px-4 py-3 border border-border/60 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed">
-      <pre className="text-foreground/90 whitespace-pre">{code}</pre>
+    <div className="relative group bg-foreground/5 px-4 py-3 border border-border/60 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed">
+      <pre className="text-foreground/90 whitespace-pre pr-8">{code}</pre>
+      <button
+        onClick={handleCopy}
+        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md bg-background/60 hover:bg-background border border-border/40 text-muted-foreground hover:text-foreground"
+        aria-label="Copy code"
+      >
+        {copied ? (
+          <Check className="w-3.5 h-3.5 text-green-500" />
+        ) : (
+          <Copy className="w-3.5 h-3.5" />
+        )}
+      </button>
     </div>
   );
 }
