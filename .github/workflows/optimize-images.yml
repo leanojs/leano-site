@@ -20,7 +20,7 @@ jobs:
   optimize:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout
@@ -37,7 +37,8 @@ jobs:
           lossless: false
           changed-only: true
           paths: public/images
-          commit-back: false
+          commit-back: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print summary
         run: |
