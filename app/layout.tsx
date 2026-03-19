@@ -7,9 +7,34 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Webpocalypse - WebP Image Converter",
+  title:
+    "Webpocalypse – Optimize Images Without Breaking Your Folder Structure",
   description:
-    "Turn JPG and PNG into WebP while keeping your folder structure. Fast, simple, apocalypse-ready.",
+    "Convert JPG/PNG to WebP/AVIF with preserved folder structure. Works in browser, CLI, and GitHub Actions.",
+
+  openGraph: {
+    title: "Webpocalypse",
+    description:
+      "Drop your public folder → get optimized images. CLI + GitHub Action included.",
+    url: "https://webpocalypse.vercel.app",
+    siteName: "Webpocalypse",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Webpocalypse preview",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Webpocalypse",
+    description: "Optimize images locally. Web app + CLI + GitHub Action.",
+    images: ["/images/og-image.png"],
+  },
 };
 
 export default function RootLayout({
