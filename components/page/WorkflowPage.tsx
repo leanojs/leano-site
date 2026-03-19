@@ -163,7 +163,7 @@ jobs:
           fetch-depth: 2
 
       - name: Optimize images
-        uses: your-handle/webpocalypse-action@v1
+        uses: meowbeen/webpocalypse-action@v1
         with:
           format: webp
           quality: 82`;
@@ -178,7 +178,7 @@ const commitBackYaml = `jobs:
         with:
           fetch-depth: 2
 
-      - uses: your-handle/webpocalypse-action@v1
+      - uses: meowbeen/webpocalypse-action@v1
         with:
           format: webp
           quality: 80
@@ -192,7 +192,7 @@ const outputsYaml = `- uses: actions/checkout@v4
 
 - name: Optimize images
   id: optimize
-  uses: your-handle/webpocalypse-action@v1
+  uses: meowbeen/webpocalypse-action@v1
 
 - name: Print savings
   run: |
@@ -200,7 +200,7 @@ const outputsYaml = `- uses: actions/checkout@v4
     echo "Saved:     \${{ steps.optimize.outputs.bytes-saved }} bytes"
     echo "Savings:   \${{ steps.optimize.outputs.savings-percent }}%"`;
 
-const fullScanYaml = `- uses: your-handle/webpocalypse-action@v1
+const fullScanYaml = `- uses: meowbeen/webpocalypse-action@v1
   with:
     format: avif
     quality: 70
