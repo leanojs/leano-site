@@ -155,4 +155,61 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--webpocalypse-pink) var(--webpocalypse-sky);
+  }
+
+  /* WebKit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--webpocalypse-sky);
+    border-left: 1px solid var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      var(--webpocalypse-pink) 0%,
+      var(--webpocalypse-purple) 100%
+    );
+    border-radius: 999px;
+    border: 2px solid var(--webpocalypse-sky);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      #ff74e5 0%,
+      var(--webpocalypse-pink) 100%
+    );
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--webpocalypse-sky);
+  }
+
+  /* Dark mode overrides */
+  .dark * {
+    scrollbar-color: var(--webpocalypse-pink) #0d0118;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #0d0118;
+    border-left-color: rgba(105, 65, 138, 0.4);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    border-color: #0d0118;
+  }
+
+  .dark ::-webkit-scrollbar-corner {
+    background: #0d0118;
+  }
 }
