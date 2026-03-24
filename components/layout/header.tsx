@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/cli", label: "CLI" },
+  { href: "/vscode", label: "VS Code" },
   { href: "/workflow", label: "Workflow" },
 ];
 

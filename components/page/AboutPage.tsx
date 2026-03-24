@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Zap, Terminal, GitBranch, ArrowRight } from "lucide-react";
+import { Zap, Terminal, GitBranch, Puzzle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import {
@@ -25,6 +25,14 @@ const products = [
       "One command and your whole directory is done. Plug it into your build script and never think about it again.",
     href: "/cli",
     cta: "View CLI docs",
+  },
+  {
+    icon: Puzzle,
+    title: "VS Code & Cursor",
+    description:
+      "Right-click images or folders in the Explorer, or run from the command palette — same CLI, fully local inside your editor.",
+    href: "/vscode",
+    cta: "View extension docs",
   },
   {
     icon: GitBranch,

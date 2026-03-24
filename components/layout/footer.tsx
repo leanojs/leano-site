@@ -7,6 +7,7 @@ import { FadeUp, Stagger, StaggerItem } from "@/components/ui/animate";
 const productLinks = [
   { href: "/", label: "Web App" },
   { href: "/cli", label: "CLI" },
+  { href: "/vscode", label: "VS Code extension" },
   { href: "/workflow", label: "GitHub Workflow" },
 ];
 
