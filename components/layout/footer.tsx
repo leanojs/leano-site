@@ -19,7 +19,7 @@ const resourceLinks = [
     external: true,
   },
   {
-    href: "https://github.com/meowbeen/webpocalypse-cli",
+    href: "https://github.com/Webpocalypse/webpocalypse-cli",
     label: "GitHub",
     external: true,
   },
