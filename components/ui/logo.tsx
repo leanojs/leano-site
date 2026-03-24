@@ -15,9 +15,15 @@ const Logo = ({
   title: string;
 }) => {
   return (
-    <Link href="/" className="flex items-center gap-1">
+    <Link href="/" className="flex items-center gap-1 select-none">
       <div>
-        <Image src={src} alt="" width={width} height={height} aria-hidden="true" />
+        <Image
+          src={src}
+          alt=""
+          width={width}
+          height={height}
+          aria-hidden="true"
+        />
       </div>
       <span className="font-semibold text-xl tracking-tight">{title}</span>
     </Link>
