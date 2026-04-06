@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "../ui/logo";
 import { FadeUp, Stagger, StaggerItem } from "@/components/ui/animate";
+import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
 
 const productLinks = [
   { href: "/", label: "Web App" },
@@ -22,6 +23,16 @@ const resourceLinks = [
     href: "https://github.com/leanojs/leano-cli",
     label: "GitHub",
     external: true,
+  },
+];
+
+const socialLinks = [
+  { href: "https://x.com/leanojs", label: "Twitter", icon: FaXTwitter },
+  { href: "https://github.com/leanojs", label: "GitHub", icon: FaGithub },
+  {
+    href: "https://www.linkedin.com/company/leanojs",
+    label: "LinkedIn",
+    icon: FaLinkedin,
   },
 ];
 
@@ -97,20 +108,36 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <FadeUp delay={0.2}>
-            <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-2 pt-4">
+            <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-2 pt-4 w-full">
               <p className="text-muted-foreground text-xs">
                 &copy; {new Date().getFullYear()} Leano. All rights reserved.
               </p>
               <div className="flex items-center gap-4">
-                {legalLinks.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className="text-muted-foreground hover:text-foreground text-xs transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
+                {/* Social Icons */}
+                <div className="flex items-center gap-3">
+                  {socialLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      target="_blank"
+                    >
+                      <l.icon size={18} />
+                    </Link>
+                  ))}
+                </div>
+                {/* Legal Links */}
+                <div className="flex items-center gap-4">
+                  {legalLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className="text-muted-foreground hover:text-foreground text-xs transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </FadeUp>
