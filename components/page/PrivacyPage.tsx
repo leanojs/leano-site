@@ -178,7 +178,7 @@ export function PrivacyPage() {
               <p>
                 You can open an issue on{" "}
                 <Link
-                  href="https://github.com/meowbeen/webpocalypse-cli"
+                  href="https://github.com/meowbeen/leano-cli"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground underline underline-offset-2 hover:no-underline"

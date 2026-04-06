@@ -14,12 +14,12 @@ const productLinks = [
 const resourceLinks = [
   { href: "/about", label: "About" },
   {
-    href: "https://www.npmjs.com/package/webpocalypse",
+    href: "https://www.npmjs.com/package/leano",
     label: "npm",
     external: true,
   },
   {
-    href: "https://github.com/Webpocalypse/webpocalypse-cli",
+    href: "https://github.com/Leano/leano-cli",
     label: "GitHub",
     external: true,
   },
@@ -36,11 +36,11 @@ export default function Footer() {
             {/* Brand */}
             <FadeUp delay={0.05} className="flex-1 min-w-0">
               <Logo
-                src="/images/webpocalypse-secondary.svg"
-                alt="Webpocalypse"
+                src="/images/leano-secondary.svg"
+                alt="Leano"
                 width={20}
                 height={20}
-                title="Webpocalypse"
+                title="Leano"
               />
               <p className="mt-3 max-w-xs text-muted-foreground text-xs leading-relaxed">
                 Batch convert JPG & PNG to WebP and AVIF — locally, in your
@@ -99,7 +99,7 @@ export default function Footer() {
           <FadeUp delay={0.2}>
             <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-2 pt-4">
               <p className="text-muted-foreground text-xs">
-                &copy; {new Date().getFullYear()} Webpocalypse. All rights
+                &copy; {new Date().getFullYear()} Leano. All rights
                 reserved.
               </p>
               <div className="flex items-center gap-4">

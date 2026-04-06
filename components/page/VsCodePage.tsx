@@ -24,9 +24,9 @@ import {
 } from "@/components/ui/animate";
 
 const MARKETPLACE_SEARCH =
-  "https://marketplace.visualstudio.com/search?term=webpocalypse-vscode&target=VSCode";
+  "https://marketplace.visualstudio.com/search?term=leano-vscode&target=VSCode";
 const OPEN_VSX_SEARCH =
-  "https://open-vsx.org/?search=webpocalypse-vscode&sortBy=relevance&sortOrder=desc";
+  "https://open-vsx.org/?search=leano-vscode&sortBy=relevance&sortOrder=desc";
 
 function CodeBlock({ code, lang = "bash" }: { code: string; lang?: string }) {
   void lang;
@@ -82,9 +82,9 @@ function Section({
 
 const whatItDoes = [
   "explorer — right-click a .jpg / .jpeg / .png → optimize image. folder → optimize folder.",
-  "command palette — Webpocalypse: Optimize Images opens a folder picker (same flow as a folder right-click).",
+  "command palette — Leano: Optimize Images opens a folder picker (same flow as a folder right-click).",
   "you get a short notification, then a summary with file count and rough total savings from the CLI’s --json line.",
-  "stdout / stderr go to the Webpocalypse output channel so you can actually read what happened.",
+  "stdout / stderr go to the Leano output channel so you can actually read what happened.",
 ];
 
 const requirements = [
@@ -94,7 +94,7 @@ const requirements = [
   },
   {
     req: "Node + npm",
-    notes: "extension shells out to npx webpocalypse. Node ≥ 18, same as the CLI.",
+    notes: "extension shells out to npx leano. Node ≥ 18, same as the CLI.",
   },
   {
     req: "network (first run)",
@@ -104,39 +104,39 @@ const requirements = [
 
 const settingsRows = [
   {
-    setting: "webpocalypse.quality",
+    setting: "leano.quality",
     default: "80",
     description: "compression quality 1–100 (-q)",
   },
   {
-    setting: "webpocalypse.format",
+    setting: "leano.format",
     default: "webp",
     description: "webp | avif | both (-f)",
   },
   {
-    setting: "webpocalypse.maxWidth",
+    setting: "leano.maxWidth",
     default: "—",
     description: "optional max width in px (--max-width)",
   },
   {
-    setting: "webpocalypse.maxHeight",
+    setting: "leano.maxHeight",
     default: "—",
     description: "optional max height in px (--max-height)",
   },
   {
-    setting: "webpocalypse.lossless",
+    setting: "leano.lossless",
     default: "false",
     description: "lossless mode (--lossless)",
   },
   {
-    setting: "webpocalypse.inPlace",
+    setting: "leano.inPlace",
     default: "false",
     description:
       "folders: actually replace contents safely; single file: where merged outputs get read from after the run",
   },
 ];
 
-const cliInvoke = `npx --yes webpocalypse <path> --json [options…]`;
+const cliInvoke = `npx --yes leano <path> --json [options…]`;
 
 const devCompile = `npm install
 npm run compile    # emit out/
@@ -146,7 +146,7 @@ const devVsix = `npm install -g @vscode/vsce   # once
 npm run compile
 vsce package                    # produces .vsix`;
 
-const heroCommand = `npx --yes webpocalypse ./public --format webp --quality 80 --json`;
+const heroCommand = `npx --yes leano ./public --format webp --quality 80 --json`;
 
 export function VsCodePage() {
   return (
@@ -184,12 +184,12 @@ export function VsCodePage() {
                   right-click in the sidebar or hit the command palette — it’s
                   still{" "}
                   <a
-                    href="https://www.npmjs.com/package/webpocalypse"
+                    href="https://www.npmjs.com/package/leano"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
                   >
-                    webpocalypse
+                    leano
                   </a>
                   , just wired up for lazy people (complimentary). fully local.
                   no server. no API keys.
@@ -231,7 +231,7 @@ export function VsCodePage() {
                 <p className="mx-auto mt-3 max-w-xl text-muted-foreground text-xs">
                   search{" "}
                   <code className="bg-muted/80 px-1 py-0.5 rounded font-mono text-[11px]">
-                    webpocalypse-vscode
+                    leano-vscode
                   </code>{" "}
                   if the store&apos;s being weird. linux, mac, windows — same as
                   the CLI.
@@ -369,7 +369,7 @@ export function VsCodePage() {
                         when: "opens a folder picker.",
                       },
                       {
-                        cmd: "Webpocalypse: Optimize Images",
+                        cmd: "Leano: Optimize Images",
                         when: "folder picker — same as the folder flow.",
                       },
                     ].map((row) => (
@@ -393,7 +393,7 @@ export function VsCodePage() {
                   <thead>
                     <tr className="border-border/50 border-b">
                       <th className="pr-4 pb-2 font-medium text-muted-foreground text-xs text-left">
-                        webpocalypse.inPlace
+                        leano.inPlace
                       </th>
                       <th className="pr-4 pb-2 font-medium text-muted-foreground text-xs text-left">
                         CLI
@@ -416,7 +416,7 @@ export function VsCodePage() {
                         <code className="bg-muted/80 px-1 py-0.5 rounded font-mono text-[11px]">
                           &lt;folder&gt;-optimized
                         </code>{" "}
-                        directory. classic webpocalypse behaviour.
+                        directory. classic leano behaviour.
                       </td>
                     </tr>
                     <tr>
@@ -440,7 +440,7 @@ export function VsCodePage() {
               <p className="mt-4 text-muted-foreground text-xs">
                 everything hangs off{" "}
                 <code className="bg-muted px-1 py-0.5 rounded font-mono text-[11px]">
-                  webpocalypse.*
+                        leano.*
                 </code>{" "}
                 in settings. one namespace, less chaos.
               </p>

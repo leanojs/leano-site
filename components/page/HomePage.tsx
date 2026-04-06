@@ -26,7 +26,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { FolderDropzone } from "@/components/FolderDropzone";
 import { ProgressBar } from "@/components/ProgressBar";
 import { FileResultsTable } from "@/components/FileResultsTable";
-import { useWebpocalypse } from "@/hooks/useWebpocalypse";
+import { useLeano } from "@/hooks/useLeano";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -50,7 +50,7 @@ export function HomePage() {
     handleConvert,
     handleDownload,
     handleAgain,
-  } = useWebpocalypse();
+  } = useLeano();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
 

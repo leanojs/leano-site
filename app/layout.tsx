@@ -8,22 +8,22 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title:
-    "Webpocalypse – Optimize Images Without Breaking Your Folder Structure",
+    "Leano – Optimize Images Without Breaking Your Folder Structure",
   description:
     "Convert JPG/PNG to WebP/AVIF with preserved folder structure. Works in browser, CLI, and GitHub Actions.",
 
   openGraph: {
-    title: "Webpocalypse",
+    title: "Leano",
     description:
       "Drop your public folder → get optimized images. CLI + GitHub Action included.",
-    url: "https://webpocalypse.vercel.app",
-    siteName: "Webpocalypse",
+    url: "https://leano.dev",
+    siteName: "Leano",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Webpocalypse preview",
+        alt: "Leano preview",
       },
     ],
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Webpocalypse",
+    title: "Leano",
     description: "Optimize images locally. Web app + CLI + GitHub Action.",
     images: ["/images/og-image.png"],
   },

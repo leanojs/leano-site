@@ -116,7 +116,7 @@ const inputs = [
   },
   {
     name: "commit-message",
-    default: "chore: optimize images [webpocalypse]",
+    default: "chore: optimize images [leano]",
     description: "Commit message when commit-back is true",
   },
   {
@@ -166,7 +166,7 @@ jobs:
           fetch-depth: 2
 
       - name: Optimize images
-        uses: meowbeen/webpocalypse-action@v1
+        uses: meowbeen/leano-action@v1
         with:
           format: webp
           quality: 82
@@ -183,7 +183,7 @@ const commitBackYaml = `jobs:
         with:
           fetch-depth: 2
 
-      - uses: meowbeen/webpocalypse-action@v1
+      - uses: meowbeen/leano-action@v1
         with:
           format: webp
           quality: 80
@@ -197,7 +197,7 @@ const outputsYaml = `- uses: actions/checkout@v4
 
 - name: Optimize images
   id: optimize
-  uses: meowbeen/webpocalypse-action@v1
+  uses: meowbeen/leano-action@v1
 
 - name: Print savings
   run: |
@@ -205,7 +205,7 @@ const outputsYaml = `- uses: actions/checkout@v4
     echo "Saved:     \${{ steps.optimize.outputs.bytes-saved }} bytes"
     echo "Savings:   \${{ steps.optimize.outputs.savings-percent }}%"`;
 
-const fullScanYaml = `- uses: meowbeen/webpocalypse-action@v1
+const fullScanYaml = `- uses: meowbeen/leano-action@v1
   with:
     format: avif
     quality: 70
@@ -217,7 +217,7 @@ const fullScanYaml = `- uses: meowbeen/webpocalypse-action@v1
 
 const whatItDoes = [
   "detects which image files (.jpg, .jpeg, .png, .webp, .avif) were added or changed in the PR.",
-  "converts them in-place using npx webpocalypse — no Docker, no pre-installed tools.",
+  "converts them in-place using npx leano — no Docker, no pre-installed tools.",
   "reports savings via action outputs and summary logs.",
   "optionally commits the optimized images back to your branch. you can just merge.",
 ];

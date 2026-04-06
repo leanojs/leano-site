@@ -4,32 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Webpocalypse brand palette (light mode) */
-  --webpocalypse-sky: #ffe9b0; /* warm pastel sky */
-  --webpocalypse-sunset: #ffb46b; /* orange sunset glow */
-  --webpocalypse-flame: #ffd54a; /* toxic fire yellow */
-  --webpocalypse-teal: #27e0d6; /* sci‑fi car / UFO teal */
-  --webpocalypse-purple: #8624ff; /* ground / ship purple */
-  --webpocalypse-pink: #ff4fd8; /* neon laser pink */
-  --webpocalypse-shadow: #2b1234; /* deep apocalypse shadow */
+  /* Leano brand palette (light mode) */
+  --leano-sky: #ffe9b0; /* warm pastel sky */
+  --leano-sunset: #ffb46b; /* orange sunset glow */
+  --leano-flame: #ffd54a; /* toxic fire yellow */
+  --leano-teal: #27e0d6; /* sci-fi car / UFO teal */
+  --leano-purple: #8624ff; /* ground / ship purple */
+  --leano-pink: #ff4fd8; /* neon laser pink */
+  --leano-shadow: #2b1234; /* deep apocalypse shadow */
 
-  --background: var(--webpocalypse-sky);
-  --foreground: var(--webpocalypse-shadow);
+  --background: var(--leano-sky);
+  --foreground: var(--leano-shadow);
   --card: #fff5d9;
-  --card-foreground: var(--webpocalypse-shadow);
+  --card-foreground: var(--leano-shadow);
   --popover: #fffaf0;
-  --popover-foreground: var(--webpocalypse-shadow);
+  --popover-foreground: var(--leano-shadow);
 
-  --primary: var(--webpocalypse-pink);
+  --primary: var(--leano-pink);
   --primary-foreground: #190318;
 
-  --secondary: var(--webpocalypse-teal);
+  --secondary: var(--leano-teal);
   --secondary-foreground: #031312;
 
   --muted: #f5dfb8;
   --muted-foreground: #6c4a5f;
 
-  --accent: var(--webpocalypse-purple);
+  --accent: var(--leano-purple);
   --accent-foreground: #fdf4ff;
 
   --destructive: #ff6b6b;
@@ -37,28 +37,28 @@
 
   --border: #f1cf93;
   --input: #f1cf93;
-  --ring: var(--webpocalypse-pink);
+  --ring: var(--leano-pink);
 
-  --chart-1: var(--webpocalypse-pink);
-  --chart-2: var(--webpocalypse-teal);
-  --chart-3: var(--webpocalypse-purple);
-  --chart-4: var(--webpocalypse-flame);
-  --chart-5: var(--webpocalypse-sunset);
+  --chart-1: var(--leano-pink);
+  --chart-2: var(--leano-teal);
+  --chart-3: var(--leano-purple);
+  --chart-4: var(--leano-flame);
+  --chart-5: var(--leano-sunset);
 
   --radius: 1rem;
 
   --sidebar: rgba(3, 1, 10, 0.85);
   --sidebar-foreground: #fdf4ff;
-  --sidebar-primary: var(--webpocalypse-pink);
+  --sidebar-primary: var(--leano-pink);
   --sidebar-primary-foreground: #190318;
   --sidebar-accent: rgba(134, 36, 255, 0.16);
   --sidebar-accent-foreground: #fdf4ff;
   --sidebar-border: rgba(255, 244, 214, 0.3);
-  --sidebar-ring: var(--webpocalypse-teal);
+  --sidebar-ring: var(--leano-teal);
 }
 
 .dark {
-  /* Webpocalypse brand palette (dark mode) */
+  /* Leano brand palette (dark mode) */
   --background: radial-gradient(
     circle at top,
     #2b1234 0%,
@@ -72,16 +72,16 @@
   --popover: rgba(10, 2, 18, 0.98);
   --popover-foreground: #fdf4ff;
 
-  --primary: var(--webpocalypse-pink);
+  --primary: var(--leano-pink);
   --primary-foreground: #1a0216;
 
-  --secondary: var(--webpocalypse-teal);
+  --secondary: var(--leano-teal);
   --secondary-foreground: #020908;
 
   --muted: #1a0a24;
   --muted-foreground: #c4a6d6;
 
-  --accent: var(--webpocalypse-purple);
+  --accent: var(--leano-purple);
   --accent-foreground: #fdf4ff;
 
   --destructive: #ff6b6b;
@@ -89,22 +89,22 @@
 
   --border: rgba(105, 65, 138, 0.8);
   --input: rgba(105, 65, 138, 0.8);
-  --ring: var(--webpocalypse-pink);
+  --ring: var(--leano-pink);
 
-  --chart-1: var(--webpocalypse-pink);
-  --chart-2: var(--webpocalypse-teal);
-  --chart-3: var(--webpocalypse-purple);
-  --chart-4: var(--webpocalypse-flame);
-  --chart-5: var(--webpocalypse-sunset);
+  --chart-1: var(--leano-pink);
+  --chart-2: var(--leano-teal);
+  --chart-3: var(--leano-purple);
+  --chart-4: var(--leano-flame);
+  --chart-5: var(--leano-sunset);
 
   --sidebar: rgba(3, 1, 10, 0.95);
   --sidebar-foreground: #fdf4ff;
-  --sidebar-primary: var(--webpocalypse-pink);
+  --sidebar-primary: var(--leano-pink);
   --sidebar-primary-foreground: #1a0216;
   --sidebar-accent: rgba(134, 36, 255, 0.32);
   --sidebar-accent-foreground: #fdf4ff;
   --sidebar-border: rgba(105, 65, 138, 0.8);
-  --sidebar-ring: var(--webpocalypse-teal);
+  --sidebar-ring: var(--leano-teal);
 }
 
 @theme inline {
@@ -159,7 +159,7 @@
   /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--webpocalypse-pink) var(--webpocalypse-sky);
+    scrollbar-color: var(--leano-pink) var(--leano-sky);
   }
 
   /* WebKit (Chrome, Safari, Edge) */
@@ -169,35 +169,35 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--webpocalypse-sky);
+    background: var(--leano-sky);
     border-left: 1px solid var(--border);
   }
 
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(
       180deg,
-      var(--webpocalypse-pink) 0%,
-      var(--webpocalypse-purple) 100%
+      var(--leano-pink) 0%,
+      var(--leano-purple) 100%
     );
     border-radius: 999px;
-    border: 2px solid var(--webpocalypse-sky);
+    border: 2px solid var(--leano-sky);
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(
       180deg,
       #ff74e5 0%,
-      var(--webpocalypse-pink) 100%
+      var(--leano-pink) 100%
     );
   }
 
   ::-webkit-scrollbar-corner {
-    background: var(--webpocalypse-sky);
+    background: var(--leano-sky);
   }
 
   /* Dark mode overrides */
   .dark * {
-    scrollbar-color: var(--webpocalypse-pink) #0d0118;
+    scrollbar-color: var(--leano-pink) #0d0118;
   }
 
   .dark ::-webkit-scrollbar-track {

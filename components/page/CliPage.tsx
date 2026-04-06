@@ -116,30 +116,30 @@ const cliFlags = [
 ];
 
 const examples = [
-  { label: "the default — WebP at quality 80", code: "webpocalypse ./images" },
+  { label: "the default — WebP at quality 80", code: "leano ./images" },
   {
     label: "both WebP and AVIF in one go",
-    code: "webpocalypse ./images --format both --quality 75",
+    code: "leano ./images --format both --quality 75",
   },
   {
     label: "resize while converting (great for hero images)",
-    code: "webpocalypse ./public/photos --format webp --max-width 1920 --quality 85",
+    code: "leano ./public/photos --format webp --max-width 1920 --quality 85",
   },
   {
     label: "lossless WebP — perfect quality, still smaller",
-    code: "webpocalypse ./assets --format webp --lossless",
+    code: "leano ./assets --format webp --lossless",
   },
   {
     label: "output to a different directory",
-    code: "webpocalypse ./src/images --format avif --out ./dist/images",
+    code: "leano ./src/images --format avif --out ./dist/images",
   },
   {
     label: "replace in-place — safe, rolls back on failure",
-    code: "webpocalypse ./public --format webp --in-place",
+    code: "leano ./public --format webp --in-place",
   },
 ];
 
-const outputExample = `webpocalypse v1.0.0
+const outputExample = `leano v1.0.0
   Input:   ./public/images
   Output:  ./public/images-optimized
   Format:  both  Quality: 80
@@ -182,7 +182,7 @@ export function CliPage() {
 
               <HeroReveal delay={0.15}>
                 <h1 className="mb-4 font-bold text-4xl sm:text-5xl tracking-tight">
-                  webpocalypse
+                  leano
                 </h1>
               </HeroReveal>
 
@@ -195,7 +195,7 @@ export function CliPage() {
 
               <HeroReveal delay={0.35}>
                 <div className="mx-auto mt-6 max-w-xl">
-                  <CodeBlock code="npx webpocalypse ./public --format webp --quality 80" />
+                  <CodeBlock code="npx leano ./public --format webp --quality 80" />
                 </div>
               </HeroReveal>
             </div>
@@ -207,13 +207,13 @@ export function CliPage() {
                   <p className="mb-1.5 font-medium text-muted-foreground text-xs">
                     global install (so you can run it anywhere)
                   </p>
-                  <CodeBlock code="npm install -g webpocalypse" />
+                  <CodeBlock code="npm install -g leano" />
                 </div>
                 <div>
                   <p className="mb-1.5 font-medium text-muted-foreground text-xs">
                     or just npx it — no install needed
                   </p>
-                  <CodeBlock code="npx webpocalypse <input> [options]" />
+                  <CodeBlock code="npx leano <input> [options]" />
                 </div>
               </div>
               <p className="mt-4 text-muted-foreground text-xs">

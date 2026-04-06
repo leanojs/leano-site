@@ -33,7 +33,7 @@ jobs:
 
       - name: Optimize images
         id: optimize
-        uses: meowbeen/webpocalypse-action@v1
+        uses: meowbeen/leano-action@v1
         with:
           format: avif
           quality: 82

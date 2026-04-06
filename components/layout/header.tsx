@@ -30,11 +30,11 @@ const Header = () => {
       >
         {/* Logo */}
         <Logo
-          src="/images/webpocalypse-secondary.svg"
-          alt="Webpocalypse"
+          src="/images/leano-secondary.svg"
+          alt="Leano"
           width={22}
           height={22}
-          title="Webpocalypse"
+          title="Leano"
         />
 
         {/* Desktop nav */}

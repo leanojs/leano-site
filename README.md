@@ -1,8 +1,8 @@
-## Webpocalypse
+## Leano
 
 ### High‑impact image optimization for developers
 
-Webpocalypse is a Next.js tool that turns a folder of images into a highly compressed, production‑ready asset bundle in a single pass. Drop a directory of JPG/PNG files, tune quality and output formats, and download a ZIP with the converted images while preserving your original folder structure.
+Leano is a Next.js tool that turns a folder of images into a highly compressed, production-ready asset bundle in a single pass. Drop a directory of JPG/PNG files, tune quality and output formats, and download a ZIP with the converted images while preserving your original folder structure.
 
 It’s built to be **fast, transparent, and developer‑friendly**.
 

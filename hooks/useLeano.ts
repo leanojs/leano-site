@@ -19,7 +19,7 @@ function isConvertibleFile(filename: string): boolean {
 
 const MAX_TOTAL_BYTES = 50 * 1024 * 1024; // 50 MB
 
-interface UseWebpocalypseResult {
+interface UseLeanoResult {
   files: FileWithPath[];
   settings: ConversionSettings;
   progress: ConversionProgress;
@@ -54,7 +54,7 @@ function formatBytes(bytes: number): string {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
 }
 
-export function useWebpocalypse(): UseWebpocalypseResult {
+export function useLeano(): UseLeanoResult {
   const [files, setFiles] = useState<FileWithPath[]>([]);
   const [settings, setSettings] = useState<ConversionSettings>({
     quality: 80,
@@ -347,7 +347,7 @@ export function useWebpocalypse(): UseWebpocalypseResult {
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = `webpocalypse-${new Date().toISOString().slice(0, 10)}.zip`;
+    link.download = `leano-${new Date().toISOString().slice(0, 10)}.zip`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -389,4 +389,3 @@ export function useWebpocalypse(): UseWebpocalypseResult {
     handleAgain,
   };
 }
-

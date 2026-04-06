@@ -1,4 +1,4 @@
-## Webpocalypse Frontend Best Practices
+## Leano Frontend Best Practices
 
 - **Folder structure**
   - `app/page.tsx`: only wires up and renders page-level components (no business logic).
@@ -26,7 +26,7 @@
   - **Export minimal API**: return only the state, derived values, and callbacks that the UI needs.
   - **Encapsulate side effects**: network requests, timers, subscriptions, and event listeners live inside hooks, not components.
   - **Testing-friendly**: make hooks deterministic and easy to test by isolating I/O and exposing clear inputs/outputs.
-  - **Naming**: hook names start with `use` and describe intent, e.g. `useWebpocalypse`, `useConversionSettings`.
+  - **Naming**: hook names start with `use` and describe intent, e.g. `useLeano`, `useConversionSettings`.
 
 - **State and data flow**
   - **Lift state thoughtfully**: keep state as close as possible to where it is used while avoiding duplication.

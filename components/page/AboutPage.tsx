@@ -85,7 +85,7 @@ export function AboutPage() {
               <HeroReveal delay={0.25}>
                 <p className="mx-auto max-w-xl text-muted-foreground text-base sm:text-lg">
                   Converting images one by one is genuinely one of the worst
-                  tasks in web dev. So I built Webpocalypse — a tool (actually
+                  tasks in web dev. So I built Leano — a tool (actually
                   three tools) that batch converts your entire folder of JPGs
                   and PNGs to WebP or AVIF. Locally. No uploads. No waiting.
                 </p>
@@ -123,7 +123,7 @@ export function AboutPage() {
                   The problem is converting them is annoying. Every tool either
                   makes you upload to some random server (weird), handles one
                   file at a time (unacceptable), or completely destroys your
-                  folder structure (criminal). Webpocalypse does none of that.
+                  folder structure (criminal). Leano does none of that.
                   It runs in your browser or terminal, handles whole directories
                   in one shot, and keeps your file layout exactly as-is.
                 </p>
