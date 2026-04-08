@@ -109,39 +109,59 @@ const cliFlags = [
     description: "Replace source directory safely via temp dir",
   },
   {
-    flag: "--json",
+    flag: "-c, --concurrency <n>",
+    default: "auto",
+    description: "Parallel jobs (cap: webp 16 / both 12 / avif 8)",
+  },
+  {
+    flag: "--quiet",
     default: "false",
-    description: "Output structured JSON results",
+    description: "No per-file rows (spinner + summary only)",
+  },
+  {
+    flag: "--dry-run",
+    default: "false",
+    description: "List planned outputs only",
+  },
+  {
+    flag: "-h, --help",
+    default: "—",
+    description: "Show help",
+  },
+  {
+    flag: "-V, --version",
+    default: "—",
+    description: "Show version",
   },
 ];
 
 const examples = [
-  { label: "the default — WebP at quality 80", code: "leano ./images" },
+  { label: "the default — WebP at quality 80", code: "leano-cli ./images" },
   {
     label: "both WebP and AVIF in one go",
-    code: "leano ./images --format both --quality 75",
+    code: "leano-cli ./images --format both --quality 75",
   },
   {
     label: "resize while converting (great for hero images)",
-    code: "leano ./public/photos --format webp --max-width 1920 --quality 85",
+    code: "leano-cli ./public/photos --format webp --max-width 1920 --quality 85",
   },
   {
     label: "lossless WebP — perfect quality, still smaller",
-    code: "leano ./assets --format webp --lossless",
+    code: "leano-cli ./assets --format webp --lossless",
   },
   {
     label: "output to a different directory",
-    code: "leano ./src/images --format avif --out ./dist/images",
+    code: "leano-cli ./src/images --format avif --out ./dist/images",
   },
   {
     label: "replace in-place — safe, rolls back on failure",
-    code: "leano ./public --format webp --in-place",
+    code: "leano-cli ./public --format webp --in-place",
   },
 ];
 
-const outputExample = `leano v1.0.0
-  Input:   ./public/images
-  Output:  ./public/images-optimized
+const outputExample = `leano-cli v1.0.2
+  Input:   /home/user/project/public/images
+  Output:  /home/user/project/public/images-optimized
   Format:  both  Quality: 80
   Files:   42 images found → 84 outputs
 
@@ -154,7 +174,9 @@ File                                   Original    Converted   Savings
 ───────────────────────────────────────────────────────────────────────
 
 ✔ 84 files converted
-✔ 56.2 MB → 9.1 MB  (84% saved)`;
+✔ 56.2 MB → 9.1 MB (84% saved)
+
+Output: /home/user/project/public/images-optimized`;
 
 export function CliPage() {
   return (
@@ -182,7 +204,7 @@ export function CliPage() {
 
               <HeroReveal delay={0.15}>
                 <h1 className="mb-4 font-bold text-4xl sm:text-5xl tracking-tight">
-                  leano
+                  leano-cli
                 </h1>
               </HeroReveal>
 
@@ -195,7 +217,7 @@ export function CliPage() {
 
               <HeroReveal delay={0.35}>
                 <div className="mx-auto mt-6 max-w-xl">
-                  <CodeBlock code="npx leano ./public --format webp --quality 80" />
+                  <CodeBlock code="npx leano-cli ./public --format webp --quality 80" />
                 </div>
               </HeroReveal>
             </div>
@@ -207,13 +229,13 @@ export function CliPage() {
                   <p className="mb-1.5 font-medium text-muted-foreground text-xs">
                     global install (so you can run it anywhere)
                   </p>
-                  <CodeBlock code="npm install -g leano" />
+                  <CodeBlock code="npm install -g leano-cli" />
                 </div>
                 <div>
                   <p className="mb-1.5 font-medium text-muted-foreground text-xs">
                     or just npx it — no install needed
                   </p>
-                  <CodeBlock code="npx leano <input> [options]" />
+                  <CodeBlock code="npx leano-cli <input> [options]" />
                 </div>
               </div>
               <p className="mt-4 text-muted-foreground text-xs">
