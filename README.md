@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://leano.dev">
-  <img src="[https://raw.githubusercontent.com/meowbeen/webpocalypse/main/public/images/og-image.png](https://github.com/leanojs/leano-site/blob/15231792505abe821667907347cb9900c490e26c/public/images/og-image.png)" alt="Leano — Image Optimization That Keeps Your Folder Structure" width="100%" />
+  <img src="https://www.leano.dev/images/og-image.png" alt="Leano — Image Optimization That Keeps Your Folder Structure" width="100%" />
 </a>
 
 <br /><br />
