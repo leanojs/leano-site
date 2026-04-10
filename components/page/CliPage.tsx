@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  Terminal,
   Copy,
   Check,
   ArrowRight,
@@ -31,11 +30,11 @@ function CodeBlock({ code, lang = "bash" }: { code: string; lang?: string }) {
   };
 
   return (
-    <div className="relative group bg-foreground/5 px-4 py-3 border border-border/60 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed">
-      <pre className="text-foreground/90 whitespace-pre pr-8">{code}</pre>
+    <div className="group relative bg-foreground/5 px-4 py-3 border border-border/60 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed">
+      <pre className="pr-8 text-foreground/90 whitespace-pre">{code}</pre>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md bg-background/60 hover:bg-background border border-border/40 text-muted-foreground hover:text-foreground"
+        className="top-2 right-2 absolute bg-background/60 hover:bg-background opacity-0 group-hover:opacity-100 p-1.5 border border-border/40 rounded-md text-muted-foreground hover:text-foreground transition-opacity"
         aria-label="Copy code"
       >
         {copied ? (
