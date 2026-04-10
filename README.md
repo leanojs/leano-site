@@ -1,188 +1,149 @@
-## Leano
+<div align="center">
 
-### High‑impact image optimization for developers
+<a href="https://leano.dev">
+  <img src="https://raw.githubusercontent.com/meowbeen/webpocalypse/main/public/images/og-image.png" alt="Leano — Image Optimization That Keeps Your Folder Structure" width="100%" />
+</a>
 
-Leano is a Next.js tool that turns a folder of images into a highly compressed, production-ready asset bundle in a single pass. Drop a directory of JPG/PNG files, tune quality and output formats, and download a ZIP with the converted images while preserving your original folder structure.
+<br /><br />
 
-It’s built to be **fast, transparent, and developer‑friendly**.
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Powered by sharp](https://img.shields.io/badge/powered%20by-sharp-99cc00?style=flat-square)](https://sharp.pixelplumbing.com)
+[![Deploy on Vercel](https://img.shields.io/badge/deploy-Vercel-000?style=flat-square&logo=vercel)](https://vercel.com)
 
----
+**High‑impact image optimization for developers.**  
+Drop a folder. Get a ZIP. Ship a faster site. That's it.
 
-### Features
+[**leano.dev →**](https://leano.dev)
 
-- **Folder‑aware uploads**
-  - Drag & drop a whole folder of images
-  - Original directory structure is preserved in the output ZIP
-
-- **Multiple output formats**
-  - `WebP`, `AVIF`, or **both** for maximum browser coverage
-  - Per-run quality slider (50–100, default 80)
-
-- **Smart, safe performance**
-  - Bounded concurrency to avoid CPU saturation
-  - AVIF conversion tuned for much faster encodes with negligible web quality loss
-
-- **Aggregate stats at a glance**
-  - Total images converted
-  - Original vs new total size (human‑readable)
-  - Overall percentage space savings
-
-- **Per-file results table**
-  - Relative filename/path
-  - Original size and converted size (B / KB / MB)
-  - Savings % per image (client‑calculated)
-  - Subtle highlights for high‑savings rows (e.g. ≥ 50%)
-  - Clear indication of failures with error tooltips
-  - Scrollable table to handle very large folders gracefully
-
-- **Production‑ready ZIP**
-  - Downloadable ZIP of converted assets
-  - Includes original `.webp` files unchanged, if present, to avoid double‑encoding
+</div>
 
 ---
 
-### Tech Stack
+## What is Leano?
 
-- **Framework**: Next.js (App Router)
-- **Language**: TypeScript
-- **UI**:
-  - Tailwind CSS
-  - Shadcn-style UI primitives (`Card`, `Table`, `Button`, etc.)
-  - Lucide icons
-- **Image processing**: [`sharp`](https://github.com/lovell/sharp) (WebP/AVIF encoding)
-- **Runtime**: Node.js (for server‑side image conversion)
+Leano turns a folder of images into a highly compressed, production‑ready asset bundle in a single pass. Drop a directory of JPG/PNG files, tune quality and output format, and download a ZIP with the converted images — folder structure fully intact.
+
+Built to be **fast, transparent, and developer‑friendly**. No accounts. No cloud storage. No drama.
 
 ---
 
-### Getting Started
+## Features
 
-#### Prerequisites
+- **Folder‑aware uploads** — drag & drop a whole directory; original structure is preserved in the output ZIP
+- **Multiple output formats** — `WebP`, `AVIF`, or **both** for maximum browser coverage
+- **Quality control** — per‑run quality slider (50–100, default 80)
+- **Smart concurrency** — bounded to avoid CPU saturation; AVIF tuned for fast encodes without visible quality loss
+- **Aggregate stats** — total files, original vs new size, overall savings % at a glance
+- **Per‑file results table** — savings per image, highlighted rows for ≥ 50% wins, error tooltips for anything that went sideways
+- **Production‑ready ZIP** — includes original `.webp` files unchanged (no double‑encoding, we're not monsters)
 
-- Node.js (LTS recommended)
-- pnpm / npm / yarn (examples use `npm`)
+---
 
-#### Install dependencies
+## Tech Stack
+
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS + Shadcn‑style primitives |
+| Icons | Lucide |
+| Image processing | [`sharp`](https://github.com/lovell/sharp) (WebP / AVIF) |
+| Runtime | Node.js |
+| Analytics | Vercel Analytics |
+
+---
+
+## Getting Started
+
+**Prerequisites:** Node.js LTS, and whatever package manager you have a personality about.
 
 ```bash
+# install
 npm install
-```
 
-#### Run the development server
-
-```bash
+# run dev server
 npm run dev
 ```
 
-Then open `http://localhost:3000` in your browser.
+Open `http://localhost:3000` and you're in.
 
 ---
 
-### Usage
+## Usage
 
-1. **Drop a folder of images**
-   - Use the dropzone to drag & drop a directory containing JPG/JPEG/PNG images.
-   - The app automatically filters to supported image formats.
-
-2. **Configure conversion**
-   - Adjust the **Quality** slider (50–100).
-   - Choose the **Output format**:
-     - `WebP`
-     - `AVIF`
-     - `Both` (generates both formats for each input file)
-
-3. **Convert**
-   - Click **Convert**.
-   - Watch the progress indicator as your folder uploads, converts, and zips.
-
-4. **Inspect results**
-   - Review **aggregate stats**:
-     - Total files converted
-     - Original vs new total size
-     - Overall space saved (%)
-   - Inspect the **per‑file results table**:
-     - Sort visually by high savings (highlighted rows)
-     - Check any failed conversions and hover over the badge for error details
-
-5. **Download assets**
-   - Click **Download ZIP** to get your optimized asset bundle.
-   - Unzip and drop the optimized assets into your project while preserving paths.
+1. **Drop a folder** — drag & drop a directory of JPG/JPEG/PNG images onto the dropzone
+2. **Configure** — set quality (50–100) and pick `WebP`, `AVIF`, or `Both`
+3. **Convert** — hit **Convert** and watch the progress bar do its thing
+4. **Review** — check aggregate stats and the per‑file table; hover failed rows for error details
+5. **Download** — grab the ZIP and drop the optimized assets straight into your project
 
 ---
 
-### Per-file Results Table Details
+## Per‑file Results Table
 
-The per‑file results table is designed to give you **transparent, granular insight** into conversion impact:
+| Column | Details |
+|---|---|
+| Filename | Relative path, monospace font, tooltip on truncation |
+| Original / New Size | Human‑readable (B / KB / MB), right‑aligned `tabular-nums` |
+| Savings % | ≥ 50% → emerald highlight · grew in size → amber · failed → red badge |
 
-- **Filename**
-  - Shows the relative path (e.g. `images/home/hero.webp`)
-  - Uses a monospace font and truncation with a tooltip for long paths
-
-- **Original Size / New Size**
-  - Human‑readable sizes (B / KB / MB)
-  - Right‑aligned with `tabular-nums` for easy scanning
-
-- **Savings %**
-  - Calculated on the client from original and converted byte sizes
-  - **≥ 50%**: subtle emerald highlight
-  - **Negative savings** (file grew): amber highlight with `+X.Y% larger` label
-  - **Failed conversions**: red `Failed` badge with error tooltip
-
-- **Scalability**
-  - Scrollable container with sticky header
-  - Handles large folders without collapsing the layout
+Scrollable with a sticky header — handles large folders without breaking the layout.
 
 ---
 
-### API Overview
+## API
 
-#### `POST /api/convert`
+### `POST /api/convert`
 
-- **Body**: `multipart/form-data`
-  - `file_{index}`: file blobs
-  - `path_{index}`: relative paths
-  - `quality`: integer (50–100)
-  - `outputFormat`: `"webp" | "avif" | "both"`
+**Body** (`multipart/form-data`):
 
-- **Response** (`ConversionResponse`):
+| Field | Type | Description |
+|---|---|---|
+| `file_{index}` | File blob | Image file |
+| `path_{index}` | string | Relative path |
+| `quality` | integer | 50–100 |
+| `outputFormat` | string | `"webp"` \| `"avif"` \| `"both"` |
+
+**Response** (`ConversionResponse`):
 
 ```ts
 {
   success: boolean;
   message: string;
-  zipBuffer?: string;   // base64-encoded zip
+  zipBuffer?: string;         // base64-encoded zip
   stats?: {
     totalFiles: number;
-    totalOriginalSize: number;   // bytes
-    totalConvertedSize: number;  // bytes
-    savedBytes: number;          // bytes
-    savedPercentage: number;     // 0–100
+    totalOriginalSize: number;    // bytes
+    totalConvertedSize: number;   // bytes
+    savedBytes: number;
+    savedPercentage: number;      // 0–100
   };
   fileResults?: Array<{
     originalPath: string;
     convertedPath: string;
-    originalSize: number;   // bytes
-    convertedSize: number;  // bytes
+    originalSize: number;
+    convertedSize: number;
     success: boolean;
     error?: string;
   }>;
 }
 ```
 
----
-
-### Development Notes
-
-- **Safety & limits**
-  - 50 MB max total upload size per run (configurable in the API route).
-  - Conversion is batched with tuned concurrency to keep the server responsive, especially for AVIF.
-
-- **Extensibility ideas**
-  - Add CLI mode to run headless in CI/CD.
-  - Surface additional metrics (e.g., per‑folder aggregates).
-  - Toggle to exclude already optimized assets.
+**Limits:** 50 MB max total upload per run (configurable in the API route).
 
 ---
 
-### License
+## Roadmap
 
-MIT. Use it, tweak it, and ship faster sites.
+- [ ] CLI mode for headless CI/CD pipelines
+- [ ] Per‑folder aggregate stats
+- [ ] Toggle to skip already‑optimized assets
+- [ ] GitHub Action
+
+---
+
+## License
+
+MIT — use it, tweak it, ship faster sites.
